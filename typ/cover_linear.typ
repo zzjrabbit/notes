@@ -4,6 +4,87 @@
 
 #show: tylenotes
 
+= The Start
+
+This note began with the following problem.
+
+#example[
+  Function $f: (0, +infinity) -> R$ satisfies the following equation:
+  $ f(x y) = f(x) + f(y) $.
+  And $forall x > 1, f(x) > 0$, $f(2)=1$.
+  Prove that $f(x)=log_2(x)$
+]
+
+#proof[
+  Let $x = 1$, then $f(y) = f(1) + f(y)$, so $f(1) = 0$.
+  Let $x = 1/y$, then $f(y * 1/y) = f(y) + f(1/y)$, hence $f(1) = f(y) + f(1/y)$.
+  Therefore, $f(1/y) = - f(y)$.
+
+  Let $0 < x_1 < x_2$, then $f(x_2/x_1) = f(x_2) + f(1/x_1) = f(x_2) - f(x_1)$.
+  Since $0 < x_1 < x_2$, $x_2/x_1 > 1$, so $f(x_2/x_1) > 0$, and that $f(x_2) > f(x_1)$.
+  So $f(x)$ is monotonically increasing on $(0, +infinity)$.
+
+  $forall x in (0, +infinity) and n in NN, f(x^n)=f(x) * n$, so
+  $f((2^(1/q))^q)=q * f(2^(1/q))$. Hence, $1/q f(2)=f(2^(1/q))$.
+  Therefore, $f(2^(1/q))=1/q$.
+
+  Let $q in QQ and q > 0$, then $exists a, b in NN, q = a/b$.
+  Then $f(2^q)=f(2^(a/b)=a f(2^(1/b))=a/b f(2)=a/b=q$.
+  So $forall q in QQ inter (0, +infinity), f(q)=log_2(q)$.
+  Then from the property of $QQ$, we can know that $f(x)=log_2(x)$.
+]
+
+= The Climax
+
+The property of $QQ$ seems to be strong enough. However, it cannot solve the problem below easily.
+
+#example[
+  $f(a)+f(b)=f(a+b/(1+a b)), a, b in (-1, 1)$
+]
+
+But this is obviously the equation of $arctan$.
+So naturally we would want to prove that for "good enough" equations like these,
+all continuous solutions would at most have the difference of constants,
+which is the following.
+
+#proposition[
+  If some equation $F(x_i,f(x_i))=0$ that satisfies some "good enough" conditions,
+  and some "good enough" continuous function $f$ is a solution of it,
+  then all solutions can be written in the form below:
+  $ A f(k_i x_i) $.
+]
+
+At first, I thought of the famous equation: Cauchy's equation, which is:
+$ f(x+y)=f(x)+f(y) $.
+By adding "transformations" to this equation with some skills,
+we may solve the equation above.
+
+Then another natural though is to study these transformations,
+since we would require at least one regular conditions to solve Cauchy's equation,
+which is one of these:
++ continuous
++ monotonous
++ anti-monotonous
+And that we would need to study how these conditions are transformed by those transformations.
+
+But after trying, I found that this might not be an interesting direction.
+So I tried proving that for some limited kinds of functions,
+*proposition 2.1* is true.
+Thankfull, I was able to prove it when solutions need to be injective.
+
+Yet the problem is not solved, for instance, this problem.
+#example[
+  $ f(x) + f(y) = 2 f((x+y)/2) f((x-y)/2), x, y in RR $
+]
+The continuous solutions are cosines. Cosines are obviously not injective,
+but we can do it by setting $f(x)=cos(phi(x))$ and plugging it into the original equation.
+Then I used DeepSeek to help me finish the final proof.
+And that skill is in fact lifting into the coverage space.
+
+Anyway, what I got, is this.
+
+= The End
+
 #theorem(title: "cover linear")[
   Suppose $f : RR -> RR$ is a non-constant continuous function,
   and there exists:
@@ -103,6 +184,11 @@
   Thus, $frak(g)_0$ is unique.
 ]
 
+This theorem is quite good, but not good enough.
+Because the cunning question setting teacher is not that kind,
+they don't always provide you with the continuity condition.
+Thus, we need this corollary to beat them.
+
 #corollary[
   If the solution of a functional equation must satisfy one of these conditions:
   1. continuous
@@ -122,6 +208,14 @@
   $M$ is a topological space with T2 and second countability
   and there is a Borel $sigma$-Algebra.
 ]
+
+The theorems above is really strong,
+it tells you how good is "good enough",
+and it is basically a precise version of *proposition 2.1*,
+though there's a little difference: it's not a difference of constants,
+it is in fact a difference of constant Lie algebra.
+
+Anyway, it can solve these problems easily, and here is an example.
 
 #example[
   Let $f : RR -> RR$, and
