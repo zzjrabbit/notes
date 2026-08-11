@@ -1,4 +1,4 @@
-#import "shared.typ": *
+#import "../shared.typ": *
 #import "@preview/noteworthy:0.4.0": *
 #import "@preview/cetz:0.5.2": canvas, draw
 
@@ -6,10 +6,10 @@
 
 = The Start
 
-This note began with the following problem.
+This note starts with the following problem.
 
 #example[
-  Function $f: (0, +infinity) -> R$ satisfies the following equation:
+  A function $f: (0, +infinity) -> R$ satisfies the following equation:
   $ f(x y) = f(x) + f(y) $.
   And $forall x > 1, f(x) > 0$, $f(2)=1$.
   Prove that $f(x)=log_2(x)$
@@ -31,57 +31,53 @@ This note began with the following problem.
   Let $q in QQ and q > 0$, then $exists a, b in NN, q = a/b$.
   Then $f(2^q)=f(2^(a/b)=a f(2^(1/b))=a/b f(2)=a/b=q$.
   So $forall q in QQ inter (0, +infinity), f(q)=log_2(q)$.
-  Then from the property of $QQ$, we can know that $f(x)=log_2(x)$.
+  Then by the density of $QQ$, we deduce that $f(x)=log_2(x)$.
 ]
 
 = The Climax
 
-The property of $QQ$ seems to be strong enough. However, it cannot solve the problem below easily.
+The density of $QQ$ seems powerful, but it does not easily solve the following problem.
 
 #example[
   $f(a)+f(b)=f(a+b/(1+a b)), a, b in (-1, 1)$
 ]
 
-But this is obviously the equation of $arctan$.
-So naturally we would want to prove that for "good enough" equations like these,
-all continuous solutions would at most have the difference of constants,
-which is the following.
+But this is clearly the functional equation for $arctan$.
+So naturally we would like to prove that for "good enough" equations of this type, all continuous solutions differ at most by a constant; this is the following proposition.
 
 #proposition[
-  If some equation $F(x_i,f(x_i))=0$ that satisfies some "good enough" conditions,
-  and some "good enough" continuous function $f$ is a solution of it,
-  then all solutions can be written in the form below:
+  If an equation $F(x_i,f(x_i))=0$ satisfies certain "good enough" conditions, and if some "good enough" continuous function $f$ is a solution, then every solution can be written as
   $ A f(k_i x_i) $.
 ]
 
-At first, I thought of the famous equation: Cauchy's equation, which is:
+At first, I thought of the famous Cauchy equation:
 $ f(x+y)=f(x)+f(y) $.
 By adding "transformations" to this equation with some skills,
 we may solve the equation above.
 
-Then another natural though is to study these transformations,
-since we would require at least one regular conditions to solve Cauchy's equation,
-which is one of these:
+Then another natural thought is to study these transformations,
+since we need at least one regularity condition to solve Cauchy's equation,
+which is one of:
 + continuous
-+ monotonous
-+ anti-monotonous
-And that we would need to study how these conditions are transformed by those transformations.
++ monotone
++ antitone
+And we would need to study how these conditions are transformed by those transformations.
 
 But after trying, I found that this might not be an interesting direction.
 So I tried proving that for some limited kinds of functions,
 *proposition 2.1* is true.
-Thankfull, I was able to prove it when solutions need to be injective.
+Thankfully, I was able to prove it when solutions need to be injective.
 
-Yet the problem is not solved, for instance, this problem.
+Yet the problem is not solved; for instance, consider the following.
 #example[
   $ f(x) + f(y) = 2 f((x+y)/2) f((x-y)/2), x, y in RR $
 ]
 The continuous solutions are cosines. Cosines are obviously not injective,
-but we can do it by setting $f(x)=cos(phi(x))$ and plugging it into the original equation.
+but we can handle it by setting $f(x)=cos(phi(x))$ and plugging it into the original equation.
 Then I used DeepSeek to help me finish the final proof.
-And that skill is in fact lifting into the coverage space.
+And that technique is in fact lifting to the covering space.
 
-Anyway, what I got, is this.
+Anyway, here is what I obtained.
 
 = The End
 
@@ -90,30 +86,30 @@ Anyway, what I got, is this.
   and there exists:
   1. A connected Lie group $G$.
   2. A continuous group homomorphism $Phi:RR -> G$ ( so $Phi(s+t)=Phi(s)Phi(t) and Phi(0)=e$ )
-  3. A continuous mapping $pi: G -> RR$ (so called a projection),
-  so that the function $f$ can be represented as:
+  3. A continuous mapping $pi: G -> RR$ (called a projection),
+  such that the function $f$ can be represented as:
   $ f(x)=pi(Phi(x)) ( forall x in RR ) $
   
-  Then there exists a unique Lie algebra element $frak(g) in "Lie"(G)$, so that 
+  Then there exists a unique Lie algebra element $frak(g) in "Lie"(G)$, such that 
   1. $phi(x) = p(exp(frak(g) x))$
   2. $f(x) = pi(p(exp(frak(g) x)))$
-  3. $forall$ continuous lifting $psi$(which is a continuous mapping satisfying $p compose psi = phi$) can be uniquely written as $ c * exp(frak(g) x) $, where c is in the kernel of the coverage space: $p(c)=1_G$
+  3. For every continuous lifting $psi$ (a continuous mapping satisfying $p compose psi = phi$), it can be uniquely written as $ c * exp(frak(g) x) $, where $c$ lies in the kernel of the covering map: $p(c)=1_G$
 ]
 
 #proof[
   Let $c$ = $psi_1(0) * psi_2(0)^(-1)$.
   $because$ p is a homomorphism $therefore$ $p(c) = phi(0) * phi(0)^(-1) = 1_G$
   $therefore$ $c in ker p$
-  Obtain two mappings $RR -> tilde(G)$:
+  We obtain two mappings $RR -> tilde(G)$:
   1. $psi_1$
   2. $x |-> c * psi_2(x)$
 
-  They are all continuous and they are both equal to $phi$ after projecting onto $G$. \
-  Since left multiplicating kernel elements does not change the projection, and when $x = 0$, $psi_1(0)=c * psi_2(0)$,
-  from $RR$ being single connected and a coverage lifting is uniquely determined by the base point and projection,
-  we can know that the two mappings must be equal ever where. \
+  Both are continuous, and both equal $phi$ after projecting onto $G$. \
+  Since left multiplication by kernel elements does not change the projection, and when $x = 0$, $psi_1(0)=c * psi_2(0)$,
+  and since $RR$ is simply connected, by the uniqueness of covering liftings determined by base point and projection,
+  we conclude that the two mappings must be equal everywhere. \
   Therefore, $psi_1(x) = c * psi_2(x)$.
-  If yet another $c'$ also satisfies the conditions above, let $x = 0$, then
+  If there is another $c'$ also satisfying the conditions above, let $x = 0$, then
   $ c' = psi_1(0) * psi_2(0)^(-1) = c $
   Thus, c is unique.
 
@@ -153,49 +149,48 @@ Anyway, what I got, is this.
   })
 
 
-  Then we will prove that $frak(g)_0$ is unique. Let yet another $frak(g)$ which also satisfies the conditions,
-  then it at lest satifies the first two, which is to say:
+  Next we prove that $frak(g)_0$ is unique. Let another $frak(g)$ also satisfy the conditions,
+  then it at least satisfies the first two, namely:
   1. $phi(x) = p(exp(frak(g) x))$
   2. $f(x) = pi(p(exp(frak(g) x)))$
 
-  Since $RR$ is single connected, and $p: tilde(G) -> G$ is a coverage mapping,
-  according to homotopy lifting in coverage space theory,
-  for continuous mapping $Phi : R -> tilde(G)$, there's
+  Since $RR$ is simply connected, and $p: tilde(G) -> G$ is a covering map,
+  by the homotopy lifting property of covering spaces,
+  for the continuous mapping $Phi : R -> tilde(G)$, there is
   $ p compose tilde(Phi) = Phi, tilde(Phi)(0) = tilde(e) $,
-  where $tilde(e)$ is the identity element of $tilde(G)$(Because $p(tilde(e))=e$, we can fix the base point.)
-  $forall s,t in RR, $
-  $ p(tilde(Phi)(s+t) = Phi(s+t) = Phi(s)Phi(t) = p(tilde(Phi)(s))p(tilde(Phi)(s)) = p(tilde(Phi)(s)tilde(Phi)(t)) $
-  Hence, $tilde(Phi)(s+t)$ and $tilde(Phi)(s)tilde(Phi)(t)$ are both a lifting of mapping $psi(u)=Phi(u)$
-  at point $s*t$.
-  And since that at the base point, we have $tilde(Phi)(0)=tilde(e)$ and $tilde(Phi)(0)tilde(Phi)(0)=tilde(e)$.
-  From the uniqueness of lifting, we have $ tilde(Phi)(s+t) = tilde(Phi)(s)tilde(Phi)(t) $.
-  So $tilde(Phi): RR -> tilde(G)$ is a continous group homomorphism.
+  where $tilde(e)$ is the identity element of $tilde(G)$ (because $p(tilde(e))=e$, we can fix the base point).
+  For all $s,t in RR$, $
+  p(tilde(Phi)(s+t) = Phi(s+t) = Phi(s)Phi(t) = p(tilde(Phi)(s))p(tilde(Phi)(s)) = p(tilde(Phi)(s)tilde(Phi)(t)) $
+  Hence, $tilde(Phi)(s+t)$ and $tilde(Phi)(s)tilde(Phi)(t)$ are both liftings of the mapping $psi(u)=Phi(u)$
+  at the point $s*t$.
+  And since at the base point we have $tilde(Phi)(0)=tilde(e)$ and $tilde(Phi)(0)tilde(Phi)(0)=tilde(e)$,
+  by the uniqueness of liftings we get $ tilde(Phi)(s+t) = tilde(Phi)(s)tilde(Phi)(t) $.
+  So $tilde(Phi): RR -> tilde(G)$ is a continuous group homomorphism.
 
-  Universal coverage $tilde(G)$ is a single connected Lie group.
-  Continuous group homomorphism $RR -> tilde(G)$ is exactly a one-parameter subgroup in $tilde(G)$.
-  According to Li Group's Fundamental Theorem, there exists a unique $frak(g) in "Lie"(tilde(G))$(Lie algebra),
-  so that $ forall x in RR, tilde(Phi)(x) = exp(frak(g) x) $,
-  in which $exp : "Lie"(tilde(G)) -> tilde(G)$ is an exponential mapping.
+  The universal cover $tilde(G)$ is a simply connected Lie group.
+  A continuous group homomorphism $RR -> tilde(G)$ is exactly a one-parameter subgroup of $tilde(G)$.
+  By the fundamental theorem of Lie groups, there exists a unique $frak(g) in "Lie"(tilde(G))$ (Lie algebra),
+  such that $ forall x in RR, tilde(Phi)(x) = exp(frak(g) x) $,
+  where $exp : "Lie"(tilde(G)) -> tilde(G)$ is the exponential map.
   Hence, $ Phi(x) = p(tilde(Phi)(x)) = p(exp(frak(g) x)) $.
-  Replace the result above into $f = pi compose Phi$,
-  Then $ f(x) = pi(p(exp(frak(g) x))) $.
-  Now that the mapping $x |-> exp(frak(g) x)$ is line $frak(g) x$ under exponential coordinate.
+  Substituting the above result into $f = pi compose Phi$,
+  we get $ f(x) = pi(p(exp(frak(g) x))) $.
+  Now, under the exponential coordinate, the mapping $x |-> exp(frak(g) x)$ is simply the line $frak(g) x$.
 
   Thus, $frak(g)_0$ is unique.
 ]
 
-This theorem is quite good, but not good enough.
-Because the cunning question setting teacher is not that kind,
-they don't always provide you with the continuity condition.
-Thus, we need this corollary to beat them.
+This theorem is quite powerful, but not sufficient.
+Because exam problems often do not provide continuity conditions,
+we need the following corollary to handle such cases.
 
 #corollary[
   If the solution of a functional equation must satisfy one of these conditions:
   1. continuous
-  2. monotonous
-  3. anti-monotonous
-  4. Measurable
-  Then it's solution must be continuous, and can be solved by the theorem above.
+  2. monotone
+  3. antitone
+  4. measurable
+  Then its solution must be continuous, and can be solved by the theorem above.
 ]
 
 #proof[
@@ -203,31 +198,31 @@ Thus, we need this corollary to beat them.
 ]
 
 #note[
-  In all the propositions above, $f: RR -> RR$ can be replaced as $f : X -> M$,
-  where $X$ is a single connected and locally compact Lie group,
-  $M$ is a topological space with T2 and second countability
-  and there is a Borel $sigma$-Algebra.
+  In all the propositions above, $f: RR -> RR$ can be replaced by $f : X -> M$,
+  where $X$ is a simply connected and locally compact Lie group,
+  and $M$ is a topological space that is Hausdorff and second-countable,
+  equipped with a Borel $sigma$-algebra.
 ]
 
-The theorems above is really strong,
-it tells you how good is "good enough",
-and it is basically a precise version of *proposition 2.1*,
-though there's a little difference: it's not a difference of constants,
-it is in fact a difference of constant Lie algebra.
+The theorems above are really strong;
+they tell you what "good enough" means,
+and they are essentially a precise version of *proposition 2.1*,
+though with a slight difference: it is not a difference of constants,
+but rather a difference of constant Lie algebra elements.
 
-Anyway, it can solve these problems easily, and here is an example.
+Anyway, they can solve these problems easily, and here is an example.
 
 #example[
   Let $f : RR -> RR$, and
   $ f(x+y) f(x-y) = f(x)^2 - f(y)^2 $
-  where $f$ is non-constant and $f$ is continuous.
-  Find all kinds of $f$.
+  where $f$ is non-constant and continuous.
+  Find all such functions $f$.
 ]
 
 #solution[
   By assumption, $f$ is non‑constant and continuous, so the corollary guarantees the required automatic continuity.  
   Hence we may apply the *cover linear* theorem.  
-  There exist a connected Lie group $G$, 
+  There exists a connected Lie group $G$, 
   a continuous homomorphism $Phi : RR -> G$, 
   and a continuous projection $pi : G -> RR$ with
   $ f = pi compose Phi $.
@@ -242,7 +237,7 @@ Anyway, it can solve these problems easily, and here is an example.
   Consequently, after choosing a suitable coordinate on the target, 
   the map $x |-> pi(p(exp(frak(g) x)))$ can only be of the form
   $ f(x) = alpha x, quad f(x) = beta sin(omega x + phi), 
-  quad f(x) = gamma sinh(omega x + psi), quad "or" quad f(x) = gamma cosh(omega x + psi). $
+  quad f(x) = gamma sinh(omega x + psi), "or" quad f(x) = gamma cosh(omega x + psi). $
 
   Now impose the given functional equation
   $ f(x + y) f(x - y) = f(x)^2 - f(y)^2 $.
@@ -250,7 +245,7 @@ Anyway, it can solve these problems easily, and here is an example.
   Setting $x = 0$ yields $f(y) f(-y) = -f(y)^2$. 
   Since $f$ is not identically zero, we obtain $f(-y) = -f(y)$; hence $f$ is odd. \
   \
-  Applying $f(0)=0$ and oddness eliminates the cosine and constant phase shifts:
+  Using $f(0)=0$ and oddness, we eliminate the cosine and constant phase shifts:
   + In the additive case, $f(x) = A x$ is already odd and vanishes at $0$.
   + In the sine case, $f(0) = beta sin phi = 0$ forces $phi = 0$ (mod $pi$). 
   Oddness then selects $phi = 0$, giving $f(x) = B sin(omega x)$.

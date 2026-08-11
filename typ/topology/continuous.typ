@@ -1,4 +1,4 @@
-#import "shared.typ": *
+#import "../shared.typ": *
 #import "@preview/noteworthy:0.4.0": *
 
 #show: tylenotes
