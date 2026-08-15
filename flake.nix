@@ -32,6 +32,9 @@
             stdenv
             typst
           ];
+          shellHook = ''
+            export TYPST_ROOT="$PWD"
+          '';
         };
       };
     };

@@ -2,7 +2,10 @@
 #import "@preview/noteworthy:0.4.0": *
 #import "@preview/cetz:0.5.2": canvas, draw
 
-#show: tylenotes
+#show: tylenotes.with(
+  title: "Cover Linear",
+  date: "2026-08-11",
+)
 
 = The Start
 

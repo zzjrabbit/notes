@@ -1,7 +1,10 @@
 #import "../shared.typ": *
 #import "@preview/noteworthy:0.4.0": *
 
-#show: tylenotes
+#show: tylenotes.with(
+  title: "Continuity",
+  date: "2026-08-11",
+)
 
 #theorem(title: "continuity")[
   Let $A subset RR$,
