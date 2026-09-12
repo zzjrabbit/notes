@@ -1,0 +1,13 @@
+[package]
+name = "cafeteria"
+version = "0.1.0"
+edition = "2024"
+
+[[bin]]
+name = "cafeteria"
+path = "model.rs"
+
+[dependencies]
+serde.workspace = true
+statrs.workspace = true
+toml.workspace = true

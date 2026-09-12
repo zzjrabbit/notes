@@ -10,7 +10,8 @@
 
 This note starts with the following problem.
 #example[
-  Let $f: RR -> RR$ be a continuous function, which satisfies
+  Let $f: RR -> RR$ be a continuous non-constant function,
+  which satisfies
   $ f(x+y)f(x-y)=f(x)^2-f(y)^2 $.
   Find all such functions.
 ]

@@ -1,0 +1,27 @@
+# All times are minutes after midnight; distances are metres; speeds are metres/minute.
+
+[model]
+# Arrival model
+population = 600.0
+earliest_arrival = 720.0
+log_mean = 2.30
+log_stddev = 0.45
+arrival_window_start = 726.0
+arrival_window_end = 780.0
+
+# Cafeteria and route
+service_rate = 25.0
+distance = 650.0
+comfortable_speed = 80.0
+minimum_speed = 50.0
+maximum_speed = 160.0
+
+# Food quality after all N people are served is 1 - quality_decline.
+quality_decline = 0.50
+
+[sweep]
+# Multiplying all three original weights by the same positive number changes no optimum.
+# The program therefore fixes time_weight = 1 and tabulates these two relative weights.
+quality_over_time = [0.0, 0.5, 1.0, 2.0, 5.0]
+speed_over_time = [0.0, 1.0, 2.0, 4.0, 8.0]
+output_csv = "models/cafeteria/results.example.csv"

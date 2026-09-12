@@ -1,13 +1,17 @@
 # Tyle
 
 This project is served for collecting personal mathematical notes.
-Your job is to translate the content of the typst file I specified into lean.
 
 ## Directories
 `lean/` holds all lean sources for proofs in `typ/`.
 Each file in `typ/` has a coresponding file in `lean/` with the same relative path.
 These two directories should have the same structure.
 Note that Main.lean is reserved and is not in use.
+
+`models/` holds computational mathematical notes. Each direct child is a Rust crate
+whose Typst note, Rust implementation, and example parameter file are colocated.
+Typst files under `models/` do not require corresponding Lean files.
+The repository root is the Cargo workspace for these crates.
 
 ## Checking
 This project do not use `lake build` to check the proofs.
@@ -18,9 +22,8 @@ lake env lean lean/Main.lean
 ```
 
 ## Editing
-1. You should never edit typ/
-2. You should never edit files in lean/ unless they are related to your work.
-3. No backward compability is allowed. Keep the code base fresh.
-4. You should tell me my mistakes if they exist.
-5. If a theorem exists but it is not contained in mathlib, reserve it as a interface and tell me in the final report.
+1. No backward compability is allowed. Keep the code base fresh.
+2. You should tell me my mistakes if they exist.
+3. If a theorem exists but it is not contained in mathlib, reserve it as a interface and tell me in the final report.
+4. Never edit files which are not related to your work.
 

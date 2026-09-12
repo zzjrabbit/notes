@@ -28,7 +28,10 @@
       }: {
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
+            cargo
             elan
+            rustc
+            rustfmt
             stdenv
             typst
           ];
