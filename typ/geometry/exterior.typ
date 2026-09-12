@@ -4,6 +4,8 @@
 #show: tylenotes.with(
   title: "Geometry",
   date: "2026-08-11",
+  tags: ("geometry", "lean"),
+  summary: "欧氏空间中外微分的 2-形式推导。",
 )
 
 = The Start

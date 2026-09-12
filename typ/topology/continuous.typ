@@ -4,6 +4,8 @@
 #show: tylenotes.with(
   title: "Continuity",
   date: "2026-08-11",
+  tags: ("topology", "lean"),
+  summary: "A ⊆ ℝ 上函数连续性的等价刻画：每个开集的原像都是子空间中的相对开集。",
 )
 
 #theorem(title: "continuity")[

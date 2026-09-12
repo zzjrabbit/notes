@@ -4,6 +4,8 @@
 #show: tylenotes.with(
   title: "Finite-Dimensional Translation Spaces and Lie Group Projections",
   date: "2026-08-14",
+  tags: ("real", "lean"),
+  summary: "连续非常值函数满足 f(x+y)f(x−y)=f(x)²−f(y)² 的解，用有限维平移空间与 Lie 群投影给出新证法。",
 )
 
 = The Start

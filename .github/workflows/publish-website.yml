@@ -1,0 +1,37 @@
+name: Publish notes website
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'typ/**'
+      - 'models/**'
+      - 'lean/**'
+      - '.github/workflows/publish-website.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish-notes-website
+  cancel-in-progress: false
+
+jobs:
+  notify:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Request website build
+        env:
+          GH_TOKEN: ${{ secrets.WEBSITE_DISPATCH_TOKEN }}
+          WEBSITE_REPOSITORY: ${{ vars.WEBSITE_REPOSITORY || 'zzjrabbit/zzjrabbit.github.io' }}
+          WEBSITE_REF: ${{ vars.WEBSITE_REF || 'main' }}
+        run: |
+          if [[ -z "$GH_TOKEN" ]]; then
+            echo '::error::Set WEBSITE_DISPATCH_TOKEN: a fine-grained token with Actions write permission for the website repository.'
+            exit 1
+          fi
+          gh api --method POST \
+            "repos/$WEBSITE_REPOSITORY/actions/workflows/deploy.yml/dispatches" \
+            -f "ref=$WEBSITE_REF"
+          echo 'Website build requested. Deployment runs in the website repository Actions tab.'
