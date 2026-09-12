@@ -2,51 +2,51 @@
 #import "@preview/noteworthy:0.4.0": *
 
 #show: tylenotes.with(
-  title: "去食堂的最优出发时间与速度",
+  title: "Optimal Departure Time and Walking Speed for the Cafeteria",
   date: "2026-09-01",
   tags: ("model"),
-  summary: "食堂就餐的出发时间与速度权衡：排队等待、菜品质量损失与超速惩罚的联合最小化。",
+  summary: "Balancing departure time and walking speed for a cafeteria visit: jointly minimizing queueing time, food quality loss, and penalties for excessive speed.",
 )
 
-= 问题
+= Problem
 
-只能前往本年级对应的食堂楼层。选择出发时间 $t$ 与平均速度 $v$，使行走和排队耗时、菜品质量损失以及速度过快的惩罚之和最小。
+Students may only use the cafeteria floor assigned to their grade. Choose a departure time $t$ and average speed $v$ to minimize the sum of walking and queueing time, food quality loss, and a penalty for walking too fast.
 
-模型采用以下假设：
+The model makes the following assumptions:
 
-- 本年级学生的到达时间服从一个平移对数正态分布；
-- 食堂的最大服务率为常数；
-- 菜品不会耗尽，也不会中途补充；
-- 菜品质量随累计已服务人数连续、线性下降；
-- 队列遵循先到先服务，且无人中途离开。
+- Arrival times for students in this grade follow a shifted lognormal distribution;
+- The cafeteria's maximum service rate is constant;
+- Food neither runs out nor is replenished during service;
+- Food quality decreases continuously and linearly with the cumulative number of people served;
+- The queue is first-come, first-served, and no one leaves before being served.
 
-= 到达与排队
+= Arrivals and Queueing
 
-设 $c$ 为最早可能到达的时间，$N$ 为本年级在该楼层用餐的总人数。到达时间的分布函数为
+Let $c$ be the earliest possible arrival time, and let $N$ be the total number of students in this grade dining on this floor. The cumulative distribution function of arrival times is
 
 $ F(a) = cases(
   0, & a <= c,
   Phi((ln(a-c)-m)/sigma), & a > c,
 ). $
 
-对应密度为
+The corresponding density is
 
 $ f(a) = 1/((a-c) sigma sqrt(2 pi))
   exp(-((ln(a-c)-m)^2)/(2 sigma^2)), quad a > c. $
 
-因此，到时间 $a$ 为止预计已有 $N F(a)$ 人到达。密度的最大值为
+Thus, the expected number of arrivals by time $a$ is $N F(a)$. The maximum density is
 
 $ f_max = exp(-m + sigma^2/2)/(sigma sqrt(2 pi)). $
 
-设恒定服务率为 $mu$。若 $N f_max <= mu$，则不会形成队伍。否则，队伍开始形成的时间为
+Let the constant service rate be $mu$. If $N f_max <= mu$, no queue forms. Otherwise, the queue begins to form at time
 
 $ u = c + exp(m-sigma^2-sigma sqrt(2 ln((N f_max)/mu))). $
 
-队伍消失的时间 $e>u$ 是方程
+The time $e>u$ at which the queue clears is the nontrivial solution of
 
 $ N(F(e)-F(u)) = mu(e-u) $
 
-的非平凡解。该方程通常没有初等闭式，用一维二分法求解即可。到达时间为 $a$ 时的排队时间为
+This equation generally has no elementary closed-form solution, but it can be solved using one-dimensional bisection. The queueing time for an arrival at time $a$ is
 
 $ w(a) = cases(
   0, & a <= u,
@@ -54,86 +54,86 @@ $ w(a) = cases(
   0, & a >= e,
 ). $
 
-= 菜品质量
+= Food Quality
 
-把初始菜品质量归一化为 $1$。设服务完全部 $N$ 人后，质量总共下降 $eta$，则服务 $n$ 人后的质量为
+Normalize the initial food quality to $1$. Suppose that quality has decreased by a total of $eta$ after all $N$ people have been served. The quality after serving $n$ people is then
 
 $ S(n) = 1-eta n/N. $
 
-在先到先服务近似下，时间 $a$ 到达的人前面约有 $N F(a)$ 人，故其菜品质量损失为
+Under the first-come, first-served approximation, someone arriving at time $a$ has approximately $N F(a)$ people ahead of them, so their food quality loss is
 
 $ 1-S(N F(a)) = eta F(a). $
 
-= 相对权重
+= Relative Weights
 
-原始惩罚函数为
+The original penalty function is
 
 $ J(t,v)
 = alpha (d/v + w(t+d/v))
 + beta eta F(t+d/v)
 + gamma ((v-v_c)_+/v_c)^2. $
 
-同时将 $alpha,beta,gamma$ 乘以任意正常数不会改变最优解。因此，当 $alpha>0$ 时，只需研究两个相对权重
+Multiplying $alpha,beta,gamma$ by the same positive constant does not change the optimum. Thus, when $alpha>0$, it suffices to consider two relative weights:
 
 $ r_B = beta/alpha, quad r_V = gamma/alpha. $
 
-将目标函数除以 $alpha$ 后，实际计算的是
+After dividing the objective function by $alpha$, the function used in the computation is
 
 $ J_"rel"(t,v)
 = d/v + w(t+d/v)
 + r_B eta F(t+d/v)
 + r_V ((v-v_c)_+/v_c)^2. $
 
-这消除了三维权重表中的重复项。配置文件固定时间权重为 $1$，分别列出希望制表的 $r_B$ 与 $r_V$。
+This eliminates redundant entries in the three-dimensional table of weights. The configuration file fixes the time weight at $1$ and lists the desired values of $r_B$ and $r_V$ separately for tabulation.
 
-= 求解
+= Solution
 
-令到达时间 $a=t+d/v$，并定义
+Set the arrival time to $a=t+d/v$, and define
 
 $ H(a)=w(a)+r_B eta F(a), $
 
 $ C(v)=d/v+r_V ((v-v_c)_+/v_c)^2. $
 
-于是 $J_"rel"(t,v)=H(a)+C(v)$。在队伍存在的区间 $u<a<e$ 内，
+Then $J_"rel"(t,v)=H(a)+C(v)$. Within the interval $u<a<e$ during which the queue exists,
 
 $ H'(a) = (N/mu + r_B eta) f(a)-1. $
 
-内部驻点满足
+Interior stationary points satisfy
 
 $ f(a) = 1/(N/mu+r_B eta). $
 
-最优到达时间只需在允许区间端点、队伍消失时间 $e$ 以及落在 $(u,e)$ 内的驻点之间比较。
+To find the optimal arrival time, it suffices to compare the endpoints of the allowed interval, the queue clearance time $e$, and any stationary points lying in $(u,e)$.
 
-当 $v>v_c$ 且 $r_V>0$ 时，最优速度满足
+When $v>v_c$ and $r_V>0$, the optimal speed satisfies
 
 $ 2 r_V (v^*)^2(v^*-v_c) = d v_c^2. $
 
-这是在 $v>v_c$ 上具有唯一解的三次方程；再将该解限制在允许速度区间内。若 $r_V=0$，则取允许的最大速度。最终输出
+This cubic equation has a unique solution for $v>v_c$; clamp that solution to the allowed speed interval. If $r_V=0$, choose the maximum allowed speed. The final output is
 
 $ (t^*,v^*) = (a^*-d/v^*, v^*). $
 
-= 参数
+= Parameters
 
 #table(
   columns: (auto, 1fr),
-  table.header([参数], [含义]),
-  [$N$], [本年级在该楼层用餐的总人数],
-  [$c$], [最早可能到达食堂的时间],
-  [$m$], [$ln(a-c)$ 的均值],
-  [$sigma$], [$ln(a-c)$ 的标准差],
-  [$mu$], [有队伍时每分钟完成服务的人数],
-  [$d$], [出发点到本年级食堂楼层的实际路程],
-  [$v_c$], [舒适行走速度],
-  [$eta$], [从第一位到最后一位顾客的总质量下降比例],
-  [$r_B$], [菜品质量惩罚相对于时间惩罚的权重],
-  [$r_V$], [速度惩罚相对于时间惩罚的权重],
+  table.header([Parameter], [Meaning]),
+  [$N$], [Total number of students in this grade dining on this floor],
+  [$c$], [Earliest possible arrival time at the cafeteria],
+  [$m$], [Mean of $ln(a-c)$],
+  [$sigma$], [Standard deviation of $ln(a-c)$],
+  [$mu$], [Number of people served per minute while a queue exists],
+  [$d$], [Actual travel distance from the departure point to the cafeteria floor assigned to this grade],
+  [$v_c$], [Comfortable walking speed],
+  [$eta$], [Total proportional decrease in quality from the first customer to the last],
+  [$r_B$], [Weight of the food quality penalty relative to the time penalty],
+  [$r_V$], [Weight of the speed penalty relative to the time penalty],
 )
 
-前八个量通过观察或测量获得；$r_B,r_V$ 是自由选择的个人偏好。`params.example.toml` 中的两个数组指定需要计算的相对权重组合。
+The first eight quantities are obtained through observation or measurement; $r_B,r_V$ are freely chosen personal preferences. The two arrays in `params.example.toml` specify the combinations of relative weights to evaluate.
 
-= 示例权重表
+= Example Weight Table
 
-下表由 Rust 程序生成的 `results.example.csv` 自动读取。行是 $r_B$，列是 $r_V$；每个单元格依次给出最优出发时间和最优速度（米/分钟）。
+The table below is populated automatically from `results.example.csv`, which is generated by the Rust program. Rows correspond to $r_B$ and columns to $r_V$; each cell lists the optimal departure time followed by the optimal speed (meters per minute).
 
 #let results = csv("results.example.csv", row-type: dictionary)
 #let config = toml("params.example.toml")

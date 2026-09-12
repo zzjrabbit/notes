@@ -5,7 +5,7 @@
   title: "Geometry",
   date: "2026-08-11",
   tags: ("geometry", "lean"),
-  summary: "欧氏空间中外微分的 2-形式推导。",
+  summary: "Deriving the exterior derivative of a 1-form as a 2-form in Euclidean space.",
 )
 
 = The Start

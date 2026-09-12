@@ -6,7 +6,7 @@
   title: "Cover Linear",
   date: "2026-08-11",
   tags: ("lie", "lean"),
-  summary: "柯西型函数方程 f(xy)=f(x)+f(y) 在单调性假设下的解，以及向连续、可测等弱条件下的推广。",
+  summary: "Solving the Cauchy-type functional equation f(xy)=f(x)+f(y) under monotonicity assumptions, with extensions to weaker regularity conditions such as continuity and measurability.",
 )
 
 = The Start
