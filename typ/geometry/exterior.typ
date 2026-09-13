@@ -2,7 +2,7 @@
 #import "@preview/noteworthy:0.4.0": *
 
 #show: tylenotes.with(
-  title: "Geometry",
+  title: "Exterior Derivatives via Linear Algebra",
   date: "2026-08-11",
   tags: ("geometry", "lean"),
   summary: "Deriving the exterior derivative of a 1-form as a 2-form in Euclidean space.",
