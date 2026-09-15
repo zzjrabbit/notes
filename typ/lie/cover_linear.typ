@@ -44,7 +44,7 @@ This note starts with the following problem.
 The density of $QQ$ seems powerful, but it does not easily solve the following problem.
 
 #example[
-  $f(a)+f(b)=f(a+b/(1+a b)), a, b in (-1, 1)$
+  $f(a)+f(b)=f((a+b)/(1+a b)), a, b in (-1, 1)$
 ]
 
 But this is clearly the functional equation for $arctan$.

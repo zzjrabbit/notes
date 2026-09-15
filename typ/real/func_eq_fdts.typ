@@ -32,7 +32,7 @@ after some calculations, we can get:
 $ g = cos $.
 The same can be done with $f = sinh$.
 
-In the case of $f = sin$, $g = cos$, which gives us a circle
+In the case of $f = sin$, $g = cos$, it gives us a circle
 in a 2-dimensional space.
 So, we can treat this equation as a projection of some
 2-dimensional curve on $RR$.
