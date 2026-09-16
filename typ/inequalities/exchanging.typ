@@ -2,7 +2,7 @@
 #import "@preview/noteworthy:0.4.0": *
 
 #show: tylenotes.with(
-  title: "Finite Sets",
+  title: "Exchanging Exponentials",
   date: "2026-09-14",
   tags: ("inequalities"),
   summary: "When exponentials get larger by exchanging the two parameters",
