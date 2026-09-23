@@ -13,7 +13,7 @@
 The story begins with the expression $x^2 - x^(-2)$, where $x > 0$.
 By the difference of squares formula, we have
 $ x^2 - x^(-2) = (x+x^(-1))(x-x^(-1)) = (x+x^(-1))(x^(1/2)+x^(-1/2))(x^(1/2)-x^(-1/2))=... $
-Hence, let $a_i = x^(2^i) + x^(-2^i)$, then $a_i^2 = x^(2^(-(i-1)))+x^(-2^(-(i-1)))+2 = a_(i-1) + 2$,
+Hence, let $a_i = x^(2^(-i)) + x^(-2^(-i))$, then $a_i^2 = x^(2^(-(i-1)))+x^(-2^(-(i-1)))+2 = a_(i-1) + 2$,
 which is $a_i = sqrt(a_(i-1)+2)$. Let $f(n) := a_0 dot a_1 dot a_2 dot ... dot a_n$,
 $g(n) := x^(2^(-n)) - x^(-2^(-n))$, then $f(n) dot g(n) = x^2 - x^(-2)$,
 which immediately gives that $f$ converges.
