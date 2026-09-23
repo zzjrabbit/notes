@@ -165,9 +165,9 @@ Anyway, here is what I obtained.
   $ p compose tilde(Phi) = Phi, tilde(Phi)(0) = tilde(e) $,
   where $tilde(e)$ is the identity element of $tilde(G)$ (because $p(tilde(e))=e$, we can fix the base point).
   For all $s,t in RR$, $
-  p(tilde(Phi)(s+t) = Phi(s+t) = Phi(s)Phi(t) = p(tilde(Phi)(s))p(tilde(Phi)(s)) = p(tilde(Phi)(s)tilde(Phi)(t)) $
+  p(tilde(Phi)(s+t)) = Phi(s+t) = Phi(s)Phi(t) = p(tilde(Phi)(s))p(tilde(Phi)(t)) = p(tilde(Phi)(s)tilde(Phi)(t)) $
   Hence, $tilde(Phi)(s+t)$ and $tilde(Phi)(s)tilde(Phi)(t)$ are both liftings of the mapping $psi(u)=Phi(u)$
-  at the point $s*t$.
+  at the point $s+t$.
   And since at the base point we have $tilde(Phi)(0)=tilde(e)$ and $tilde(Phi)(0)tilde(Phi)(0)=tilde(e)$,
   by the uniqueness of liftings we get $ tilde(Phi)(s+t) = tilde(Phi)(s)tilde(Phi)(t) $.
   So $tilde(Phi): RR -> tilde(G)$ is a continuous group homomorphism.

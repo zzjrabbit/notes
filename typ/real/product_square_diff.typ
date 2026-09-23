@@ -15,14 +15,14 @@ By the difference of squares formula, we have
 $ x^2 - x^(-2) = (x+x^(-1))(x-x^(-1)) = (x+x^(-1))(x^(1/2)+x^(-1/2))(x^(1/2)-x^(-1/2))=... $
 Hence, let $a_i = x^(2^i) + x^(-2^i)$, then $a_i^2 = x^(2^(-(i-1)))+x^(-2^(-(i-1)))+2 = a_(i-1) + 2$,
 which is $a_i = sqrt(a_(i-1)+2)$. Let $f(n) := a_0 dot a_1 dot a_2 dot ... dot a_n$,
-$g(n) := x^(2^(-n)) - x^(-2^(-n))$, then $f(n) dot g(n) = x^2 + x^(-2)$,
+$g(n) := x^(2^(-n)) - x^(-2^(-n))$, then $f(n) dot g(n) = x^2 - x^(-2)$,
 which immediately gives that $f$ converges.
 Now the problem is to find how fast $f$ increases and $g$ decreases.
 It is obvious that we would require some approximations here.
 
 = The Climax
 
-First let $t = x^2 + x^(-2)$. Thus, $f(n) dot g(n) = t$.
+First let $t = x^2 - x^(-2)$. Thus, $f(n) dot g(n) = t$.
 Since we are making approximations for $f$ and $g$,
 it is a good idea to apply $partial_n$ to both sides.
 Hence, we obtain $f'(n)g(n) + f(n)g'(n)=0$,

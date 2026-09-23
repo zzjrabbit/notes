@@ -81,7 +81,7 @@ This theorem and the following proof gives you exactly how to define $e$ with ou
   It follows that $g'(x) = f'(x) - 1$.
   Substitute this into the previous expression to obtain
   $f'(1) = 1$. Hence, $f'(x) = 1/x$.
-  Thus, we obtain $ f(x) = integral_1^x 1/x d x. $
+  Thus, we obtain $ f(x) = integral_1^x 1/x dif x. $
   Hence, $f$ is unique.
 
   We next show that our definition of $e$ is equivalent to the limit version.
