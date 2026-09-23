@@ -26,9 +26,7 @@ Since $I_n$ covers $(1,+infinity)$, $x > 1 > ln(2)$.
 Thus, $ln(2 x) < x + x - 1 = 2 x - 1$. Since $x in I_n$, we obtain $2 x in I_(n+1)$.
 Hence, $ln(x) < x - 1, forall x in I_(n+1)$.
 
-The problem is the proof of the inequality on $I_0$, which is $[1,2)$.
-It is clear that the inequality holds at $1$,
-hence we only need to prove it on $(1,2)$.
+The problem is the proof of the inequality on $I_0$, which is $(1,4)$.
 
 But you will soon find it as difficult as the orignal case,
 which I will explain later.
@@ -64,7 +62,7 @@ The answer is yes.
 This theorem and the following proof gives you exactly how to define $e$ with our inequality.
 
 #theorem[
-  Given a smooth function $f: R_+ -> R$ with the following property:
+  There exists a unique smooth function $f: R_+ -> R$ with the following property:
   + $f(x y) = f(x) + f(y)$ ($x,y>0$).
   + $f(x) <= x - 1$ ; equality holds if and only if $x=1$.
   We define $e$ to be a positive real number such that $f(e)=1$,
