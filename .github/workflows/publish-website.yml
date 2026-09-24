@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'typ/**'
+      - 'phys/**'
       - 'models/**'
       - 'lean/**'
       - '.github/workflows/publish-website.yml'
