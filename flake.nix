@@ -6,8 +6,8 @@
   };
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    flake-parts.url = "github:hercules-ci/flake-parts";
+    nixpkgs.url = "git+ssh://git@github.com/nixos/nixpkgs?ref=nixos-unstable&shallow=1";
+    flake-parts.url = "git+ssh://git@github.com/hercules-ci/flake-parts?shallow=1";
   };
 
   outputs = inputs @ {
