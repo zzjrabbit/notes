@@ -114,7 +114,7 @@ But what is it? Here is a solution.
     for i in range(31) {
       epts.push(_pt(a, b, sag, t0 + (t1 - t0) * i / 30))
     }
-    line(..epts, stroke: (thickness: 2.4pt))
+    line(..epts, stroke: (thickness: 3.0pt))
 
     let p0 = _pt(a, b, sag, t0)
     let p1 = _pt(a, b, sag, t1)
@@ -125,12 +125,12 @@ But what is it? Here is a solution.
     let Lf = 1.3
     let tip0 = (p0.at(0) - tan0.at(0) * Lf, p0.at(1) - tan0.at(1) * Lf)
     line(p0, tip0, mark: (end: ">"), stroke: (thickness: 1.2pt))
-    content(tip0, $F$, anchor: "east")
+    content(tip0, $F$, anchor: "north-east")
 
     // F' at the right end
     let tip1 = (p1.at(0) + tan1.at(0) * Lf, p1.at(1) + tan1.at(1) * Lf)
     line(p1, tip1, mark: (end: ">"), stroke: (thickness: 1.2pt))
-    content(tip1, $F'$, anchor: "west")
+    content(tip1, $F'$, anchor: "north-west")
 
     // Vertical dashed projections from the element endpoints up to the ceiling
     line(
