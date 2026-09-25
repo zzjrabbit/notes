@@ -10,8 +10,6 @@
   summary: "Analyze the sling by projection on the y-axis.",
 )
 
-= The Start
-
 This is a sling.
 
 #align(center)[
