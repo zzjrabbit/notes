@@ -113,3 +113,10 @@ Finally, as a sweet treat after our hard work, let us apply this theorem to solv
   $ f(x) = k x "or" f(x) = A sin (omega x) "or" f(x) = A sinh (k x) $
 ]
 
+#note[
+  $tau_a tau_b f = tau_(a+b) f$ is actually an application
+  of association, since it implies 
+  $f((x+a)+b) = f(x+(a+b))$. Hence, for primary mathematics,
+  we may apply association to functional equations to solve it.
+]
+
