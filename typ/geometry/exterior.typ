@@ -1,5 +1,5 @@
+#import "@preview/noteworthy:0.4.0": noteworthy
 #import "../shared.typ": *
-#import "@preview/noteworthy:0.4.0": *
 
 #show: tylenotes.with(
   title: "Exterior Derivatives via Linear Algebra",
@@ -93,6 +93,4 @@ Now, the only work is to prove *Lemma 2.1*, and here it is.
 #proof[
   What are you looking at? It's just some dumb, straightforward calculation — do it.
 ]
-
-
 

@@ -1,5 +1,5 @@
+#import "@preview/noteworthy:0.4.0": noteworthy
 #import "../shared.typ": *
-#import "@preview/noteworthy:0.4.0": *
 
 #show: tylenotes.with(
   title: "Exchanging Exponentials",
@@ -72,4 +72,3 @@ The following theorem is the final result of this note.
   Hence, unless $a < e$, otherwise the inequality is false,
   which is equivalent to our goal.
 ]
-

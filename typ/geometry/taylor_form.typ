@@ -1,5 +1,5 @@
+#import "@preview/noteworthy:0.4.0": noteworthy
 #import "../shared.typ": *
-#import "@preview/noteworthy:0.4.0": *
 
 #show: tylenotes.with(
   title: "Taylor Form",

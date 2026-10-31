@@ -1,6 +1,6 @@
+#import "@preview/noteworthy:0.4.0": noteworthy
 #import "/typ/shared.typ": *
 #import "/phys/shared.typ": *
-#import "@preview/noteworthy:0.4.0": *
 #import "@preview/cetz:0.5.2"
 
 #show: equations
@@ -256,4 +256,3 @@ But what is it? Here is a solution.
 
 Here, you can see that a catenary is the image of $cosh$,
 which looks like a parabola, but not quite the same.
-

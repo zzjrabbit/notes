@@ -1,5 +1,5 @@
+#import "@preview/noteworthy:0.4.0": noteworthy
 #import "/typ/shared.typ": *
-#import "@preview/noteworthy:0.4.0": *
 
 #show: tylenotes.with(
   title: "Yet Another Definition of Euler's Number",
@@ -110,4 +110,3 @@ This theorem and the following proof gives you exactly how to define $e$ with ou
   By the squeeze theorem, we obtain $ e=lim_(n->infinity)(1+1/n)^n. $
 
 ]
-

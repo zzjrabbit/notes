@@ -1,5 +1,5 @@
+#import "@preview/noteworthy:0.4.0": noteworthy
 #import "../shared.typ": *
-#import "@preview/noteworthy:0.4.0": *
 
 #show: tylenotes.with(
   title: "Continuity",
@@ -25,4 +25,3 @@
   Thus, $forall epsilon > 0, exists delta > 0, |x - x_0| < delta => |f(x)-f(x_0)| < epsilon$. \
   The converse is similar and is left to the reader.
 ]
-

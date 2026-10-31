@@ -1,6 +1,6 @@
+#import "@preview/noteworthy:0.4.0": noteworthy
 #import "/typ/shared.typ": *
 #import "/phys/shared.typ": *
-#import "@preview/noteworthy:0.4.0": *
 #import "@preview/cetz:0.5.2": canvas, draw
 
 #show: equations
@@ -156,4 +156,3 @@ However, there is another approach. It is not so simple, but it is more fundamen
 ]
 
 The reader can verify that the methods we use here can be extended to many other problems.
-

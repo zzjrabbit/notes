@@ -1,13 +1,65 @@
-#import "@preview/noteworthy:0.4.0": *
-
-// Typst's built-in title() renders document.title.
-// Capture it here before the tylenotes parameter of the same name shadows it.
-#let _document-title = title
+// Noteworthy owns the page template; all theorem-like environments come from
+// theorion so that numbering, proofs, and references share one implementation.
+#import "@preview/noteworthy:0.4.0": noteworthy
+#import "@preview/theorion:0.6.0": *
 
 // Whether the site generator (Calepin) is compiling this note for the web.
 // Direct Typst compilation omits this key from sys.inputs, so this returns false
 // and notes can always be compiled independently of the website.
 #let is-web() = sys.inputs.at("calepin-target", default: "") == "html"
+
+// HTML cannot use theorion's paged spacing or equation-number QED slot, so emit
+// the site's environment structure and place the proof QED explicitly there.
+#let _site-definition-environments = (
+  "definition", "axiom", "postulate", "assumption", "property", "problem", "exercise",
+)
+#let _site-remark-environments = ("remark", "note", "example")
+
+#let _site-environment(it) = {
+  if not is-web() { return it.body }
+  let style = if it.kind in _site-definition-environments { " note-definition" }
+    else if it.kind in _site-remark-environments { " note-remark" }
+    else { "" }
+  html.elem("section", attrs: (class: "note-environment note-" + it.kind + style), {
+    html.elem("div", attrs: (class: "note-environment-body"), it.body)
+  })
+}
+
+#let _theorion-proof = proof
+#let proof(title: auto, qed: auto, ..args, body) = {
+  if not is-web() { return _theorion-proof(title: title, qed: qed, ..args, body) }
+  let content = _theorion-proof(title: title, qed: none, ..args, body)
+  if content == none { return content }
+  context {
+    let qed-symbol = if qed == auto { get-qed-symbol(here()) } else { qed }
+    html.elem("section", attrs: (class: "note-environment note-proof"), {
+      content
+      if qed-symbol != none {
+        html.elem("span", attrs: (style: "float: inline-end"), qed-symbol)
+      }
+    })
+  }
+}
+
+#let _theorion-solution = solution
+#let solution(title: auto, qed: none, ..args, body) = {
+  if not is-web() { return _theorion-solution(title: title, qed: qed, ..args, body) }
+  let content = _theorion-solution(title: title, qed: none, ..args, body)
+  if content == none { return content }
+  context {
+    let qed-symbol = if qed == auto { get-qed-symbol(here()) } else { qed }
+    html.elem("section", attrs: (class: "note-environment note-remark note-solution"), {
+      content
+      if qed-symbol != none {
+        html.elem("span", attrs: (style: "float: inline-end"), qed-symbol)
+      }
+    })
+  }
+}
+
+// Typst's built-in title() renders document.title.
+// Capture it here before the tylenotes parameter of the same name shadows it.
+#let _document-title = title
 
 #let tylenotes(
   title : str,
@@ -31,7 +83,28 @@
     title: title,
     author: "zzj",
     date: date,
-  )(body)
+  )({
+    // theorion's empty "fake paragraphs" repair paged indentation, but become
+    // full empty paragraphs in HTML; disable them there.
+    if is-web() { set-indent-mode(none) }
+    show: show-theorion
+    show figure.where(kind: "theorem"): _site-environment
+    show figure.where(kind: "lemma"): _site-environment
+    show figure.where(kind: "corollary"): _site-environment
+    show figure.where(kind: "proposition"): _site-environment
+    show figure.where(kind: "conjecture"): _site-environment
+    show figure.where(kind: "definition"): _site-environment
+    show figure.where(kind: "axiom"): _site-environment
+    show figure.where(kind: "postulate"): _site-environment
+    show figure.where(kind: "assumption"): _site-environment
+    show figure.where(kind: "property"): _site-environment
+    show figure.where(kind: "problem"): _site-environment
+    show figure.where(kind: "exercise"): _site-environment
+    show figure.where(kind: "remark"): _site-environment
+    show figure.where(kind: "note"): _site-environment
+    show figure.where(kind: "example"): _site-environment
+    body
+  })
 }
 
 // Equation numbering, for notes compiled to both PDF and the website.

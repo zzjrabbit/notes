@@ -1,5 +1,5 @@
+#import "@preview/noteworthy:0.4.0": noteworthy
 #import "../shared.typ": *
-#import "@preview/noteworthy:0.4.0": *
 #import "@preview/cetz:0.5.2": canvas, draw
 
 #show: tylenotes.with(
@@ -271,4 +271,3 @@ Anyway, they can solve these problems easily, and here is an example.
   This solves the problem by reducing the functional equation, via the *cover linear* theorem, 
   to the classification of one‑parameter subgroups of $1$‑dimensional Lie groups.
 ]
-

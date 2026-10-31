@@ -1,5 +1,5 @@
+#import "@preview/noteworthy:0.4.0": noteworthy
 #import "/typ/shared.typ": *
-#import "@preview/noteworthy:0.4.0": *
 
 #show: tylenotes.with(
   title: "Finite-Dimensional Translation Spaces and Lie Group Projections",
@@ -119,4 +119,3 @@ Finally, as a sweet treat after our hard work, let us apply this theorem to solv
   $f((x+a)+b) = f(x+(a+b))$. Hence, for primary mathematics,
   we may apply association to functional equations to solve it.
 ]
-

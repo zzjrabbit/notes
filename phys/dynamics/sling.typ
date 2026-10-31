@@ -1,6 +1,6 @@
+#import "@preview/noteworthy:0.4.0": noteworthy
 #import "/typ/shared.typ": *
 #import "/phys/shared.typ": *
-#import "@preview/noteworthy:0.4.0": *
 #import "@preview/cetz:0.5.2"
 
 #show: tylenotes.with(
@@ -117,4 +117,3 @@ B will soon stop moving.
   $ y' = g/(omega^2)(cos(omega t) - 1), $
   which is a common oscillation.
 ]
-

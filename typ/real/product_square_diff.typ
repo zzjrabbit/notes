@@ -1,5 +1,5 @@
+#import "@preview/noteworthy:0.4.0": noteworthy
 #import "/typ/shared.typ": *
-#import "@preview/noteworthy:0.4.0": *
 
 #show: tylenotes.with(
   title: "Infinite Product of Sums of Squares",
@@ -51,4 +51,3 @@ The final result is here.
  $therefore hat(f)(m)=1/2 m$ and $hat(g)(m)=2/m$.
  Hence, $f(n)=2^(n-1)$ and $g(n)=2^(1-n)$.
 ]
-
